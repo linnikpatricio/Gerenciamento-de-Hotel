@@ -103,5 +103,13 @@ public class Quarto {
                 +" - Status: "
                 +statusDoQuarto;
     }
+	public static void atualizarStatusQuarto(Integer numeroDoQuarto, List<Quarto> listQuarto) {
+		for(Quarto quarto: listQuarto) {
+    		if(numeroDoQuarto == quarto.getNumeroDoQuarto()) {
+    			quarto.setStatusDoQuarto(StatusDoQuarto.DISPONIVEL);
+    		}
+    	}
+		
+	}
 
 }

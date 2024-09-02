@@ -266,23 +266,8 @@ public class Main {
                     } else if (subOption == 2) {
                         System.out.print("Insira o id da reserva que será removida: ");
                         int n = sc.nextInt();
-                        for (int i = 0; i < listGdr.size(); i++) {
-                            GerenciamentoDeReserva gdr = listGdr.get(i);
-                            if(gdr.getId() == n) {
-                                gdr.getQuarto().setStatusDoQuarto(StatusDoQuarto.DISPONIVEL);
-                                listGdr.remove(i);
-                                System.out.println("Reserva removida com sucesso!");
-                                break;
-
-                            }else {
-                                System.out.println("Essa reserva não existe!");
-                            }
-                        }
-
-
-
-
-
+                        GerenciamentoDeReserva.removerReserva(n, listGdr,listQuarto);
+ 
                     } else if (subOption == 3) {
 
                     } else if (subOption == 4) {
