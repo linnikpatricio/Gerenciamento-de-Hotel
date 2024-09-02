@@ -76,16 +76,6 @@ public class GerenciamentoDeReserva {
     public void setHospede(Hospede hospede) {
         this.hospede = hospede;
     }
-    public static void removerReserva(int id, List<GerenciamentoDeReserva> reservaList) {
-        for (GerenciamentoDeReserva reserva : reservaList) {
-            if (reserva.getId() == id) {
-                reserva.getQuarto().setStatusDoQuarto(StatusDoQuarto.DISPONIVEL);
-                reservaList.remove(reserva);
-                System.out.println("Reserva removida com sucesso! ");
-                break;
-            }
-        }
-    }
 
     @Override
     public String toString() {
@@ -97,5 +87,20 @@ public class GerenciamentoDeReserva {
                 " - Número do Quarto: " + quarto.getNumeroDoQuarto() +
                 " - Id do Hóspede: " + hospede.getId();
     }
+
+	public static void removerReserva(int id, List<GerenciamentoDeReserva> reservaList, List<Quarto> listQuarto) {
+		 for (GerenciamentoDeReserva reserva : reservaList) {
+	            if (reserva.getId() == id) {
+	                reservaList.remove(reserva);
+	                Quarto.atualizarStatusQuarto(reserva.getQuarto().getNumeroDoQuarto(), listQuarto);
+	                System.out.println("Reserva removida com sucesso! ");
+	                break;
+	            }
+	            else {
+	            	System.out.println("Reserva não existe!");
+	            }
+	        }
+		
+	}
 
 }
