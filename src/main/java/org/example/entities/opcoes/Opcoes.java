@@ -25,10 +25,9 @@ public class Opcoes {
     }
     public void opcoesReserva(){
         System.out.println("1. Criar Reserva");
-        System.out.println("2. Cancelar Reservas ");
-        System.out.println("3. Atualizar a disponibilidade de quartos");
-        System.out.println("4. Verificar a disponibilidade de quartos da reserva");
-        System.out.println("5. Voltar");
+        System.out.println("2. Cancelar Reservas e Atualizar a Disponibilidade do Quarto");
+        System.out.println("3. Visualizar Reserva");
+        System.out.println("4. Voltar");
     }
     public void opcoesFuncionario(){
         System.out.println("1. Cadastrar Funcionário");

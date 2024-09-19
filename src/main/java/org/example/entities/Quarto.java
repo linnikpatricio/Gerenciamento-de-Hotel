@@ -89,6 +89,15 @@ public class Quarto {
         }
         return false;
     }
+    public static Boolean verSeNumeroDeQuartoExiste2(int id,List<Quarto> quartoList) {
+        for (Quarto quarto : quartoList) {
+            if(quarto.getNumeroDoQuarto() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {
@@ -103,7 +112,7 @@ public class Quarto {
                 +" - Status: "
                 +statusDoQuarto;
     }
-	public static void atualizarStatusQuarto(Integer numeroDoQuarto, List<Quarto> listQuarto) {
+	public static void atualizarStatusQuarto(int numeroDoQuarto, List<Quarto> listQuarto) {
 		for(Quarto quarto: listQuarto) {
     		if(numeroDoQuarto == quarto.getNumeroDoQuarto()) {
     			quarto.setStatusDoQuarto(StatusDoQuarto.DISPONIVEL);

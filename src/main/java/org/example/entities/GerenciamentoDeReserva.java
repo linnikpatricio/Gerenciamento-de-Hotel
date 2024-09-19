@@ -1,6 +1,5 @@
 package org.example.entities;
 
-import org.example.entities.enums.StatusDoQuarto;
 import org.example.entities.enums.TipoDeQuarto;
 
 import java.text.SimpleDateFormat;
@@ -76,6 +75,31 @@ public class GerenciamentoDeReserva {
     public void setHospede(Hospede hospede) {
         this.hospede = hospede;
     }
+    public static void removerReserva(int id, List<GerenciamentoDeReserva> reservaList, List<Quarto> listQuarto) {
+        for (GerenciamentoDeReserva reserva : reservaList) {
+            if (reserva.getId() == id) {
+                reservaList.remove(reserva);
+                Quarto.atualizarStatusQuarto(reserva.getQuarto().getNumeroDoQuarto(), listQuarto);
+                System.out.println();
+                System.out.println("Reserva removida com sucesso! ");
+                System.out.println();
+                break;
+            }
+            else {
+                System.out.println();
+                System.out.println("Reserva não existe!");
+                System.out.println();
+            }
+        }
+    }
+    public static Boolean verSeReservaExiste(int id,List<GerenciamentoDeReserva> reservaList) {
+        for(GerenciamentoDeReserva gdr : reservaList) {
+            if(gdr.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
@@ -88,19 +112,6 @@ public class GerenciamentoDeReserva {
                 " - Id do Hóspede: " + hospede.getId();
     }
 
-	public static void removerReserva(int id, List<GerenciamentoDeReserva> reservaList, List<Quarto> listQuarto) {
-		 for (GerenciamentoDeReserva reserva : reservaList) {
-	            if (reserva.getId() == id) {
-	                reservaList.remove(reserva);
-	                Quarto.atualizarStatusQuarto(reserva.getQuarto().getNumeroDoQuarto(), listQuarto);
-	                System.out.println("Reserva removida com sucesso! ");
-	                break;
-	            }
-	            else {
-	            	System.out.println("Reserva não existe!");
-	            }
-	        }
-		
-	}
+
 
 }

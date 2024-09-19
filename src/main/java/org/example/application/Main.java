@@ -20,6 +20,7 @@ public class Main {
         List<Quarto> listQuarto = new ArrayList<>();
         List<Hospede> listHospede = new ArrayList<>();
         List<Funcionario> listFuncionario = new ArrayList<>();
+        Date dataDeAgora = new Date();
         Date date1;
         Date date2;
 
@@ -47,6 +48,10 @@ public class Main {
 
                             System.out.print("Numero Do Quarto: ");
                             int numero = sc.nextInt();
+                            while (Quarto.verSeNumeroDeQuartoExiste2(numero,listQuarto)) {
+                                System.out.print("Esse número de quarto já existe, por favor insira outro! ");
+                                numero = sc.nextInt();
+                            }
                             System.out.print("Tipo de Quarto: ");
                             sc.nextLine();
                             String tipoDeQuarto = sc.nextLine();
@@ -122,6 +127,10 @@ public class Main {
                         for (int i = 1; i <= n; i++) {
                             System.out.print("Id: ");
                             int id = sc.nextInt();
+                            while(Hospede.verSeHospedeExiste(id,listHospede)) {
+                                System.out.print("Já existe hospede com esse id, por favor insira outro id! ");
+                                id = sc.nextInt();
+                            }
                             System.out.print("Nome: ");
                             sc.nextLine();
                             String nome = sc.nextLine();
@@ -176,12 +185,8 @@ public class Main {
                                 hospede1.setDataDeNascimento(hospede2.getDataDeNascimento());
                                 hospede1.setEndereco(hospede2.getNome());
                                 hospede1.setNumero(hospede2.getNumero());
-
                             }
-
                         }
-
-
                     } else if (subOption == 4) {
                         System.out.println();
                         System.out.println("Voltando ao Menu");
@@ -192,14 +197,10 @@ public class Main {
                         System.out.println("Opcão Inválida, Por favor insira uma opção válida");
                         System.out.println();
                     }
-
-
                 }
-
-
             } else if (opcao == 3) {
                 int subOption = 0;
-                while (subOption != 5) {
+                while (subOption != 4) {
                     opcoes.opcoesReserva();
                     System.out.println("Digite uma opção: ");
                     subOption = sc.nextInt();
@@ -211,12 +212,16 @@ public class Main {
                         for (int i = 1; i <= n; i++) {
                             System.out.print("Id: ");
                             int id = sc.nextInt();
+                            while (GerenciamentoDeReserva.verSeReservaExiste(id,listGdr)) {
+                                System.out.print("Já existe reserva com esse id, por favor insira outro id! ");
+                                id = sc.nextInt();
+                            }
                             System.out.print("Data de entrada (DD/MM/YYYY) : ");
                             date1 = sdf.parse(sc.next());
                             System.out.print("Data de Saída (DD/MM/YYYY) : ");
                             date2 = sdf.parse(sc.next());
-                            while (date1.after(date2)) {
-                                System.out.println("A data de entrada tem que ser anterior a data de saída!");
+                            while (date1.after(date2) || date1.before(dataDeAgora)) {
+                                System.out.println("Data inválida! por favor insira uma data válida!");
                                 System.out.println();
                                 System.out.print("Data de entrada (DD/MM/YYYY) : ");
                                 date1 = sdf.parse(sc.next());
@@ -269,14 +274,16 @@ public class Main {
                         GerenciamentoDeReserva.removerReserva(n, listGdr,listQuarto);
  
                     } else if (subOption == 3) {
+                        for(GerenciamentoDeReserva gdr : listGdr) {
+                            System.out.println(gdr);
+                        }
 
                     } else if (subOption == 4) {
-
-                    } else if (subOption == 5) {
                         System.out.println();
                         System.out.println("Voltando ao Menu");
                         System.out.println();
-                    }else {
+
+                    } else {
                         System.out.println("Opção Inválida, por favor insira uma opção válida! ");
                     }
 
@@ -296,6 +303,10 @@ public class Main {
                         for (int i = 0; i < n; i++) {
                             System.out.print("Id: ");
                             int id = sc.nextInt();
+                            while (Funcionario.verSeFuncionarioExiste(id,listFuncionario)) {
+                                System.out.print("já existe funcionário com esse id,por favor insira outro id! ");
+                                id = sc.nextInt();
+                            }
                             System.out.print("Nome: ");
                             sc.nextLine();
                             String nome = sc.nextLine();
@@ -311,16 +322,17 @@ public class Main {
                             System.out.println();
                             System.out.println("Funcionário Cadastrado com Sucesso!");
                             System.out.println();
-
                         }
-
-
-
 
                     } else if (subOption == 2) {
-                        for(Funcionario funcionario1 : listFuncionario) {
-                            System.out.println(funcionario1);
+                        if(listFuncionario.isEmpty()) {
+                            System.out.println("não existe funcionarios cadastrados");
+                        } else {
+                            for(Funcionario funcionario1 : listFuncionario) {
+                                System.out.println(funcionario1);
+                            }
                         }
+
 
                     } else if (subOption == 3) {
                         System.out.println("Editar Informações");

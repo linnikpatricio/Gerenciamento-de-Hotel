@@ -8,6 +8,7 @@ public class SaidaEntrada{
     private Date checkIn;
     private Date checkOut;
 
+
     public SaidaEntrada(){
     }
 

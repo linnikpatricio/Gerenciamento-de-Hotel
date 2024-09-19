@@ -48,6 +48,15 @@ public class Funcionario extends Pessoas {
         this.turno = turno;
     }
 
+    public static Boolean verSeFuncionarioExiste(int id,List<Funcionario>list) {
+        for (Funcionario funcionario : list) {
+            if(funcionario.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {
